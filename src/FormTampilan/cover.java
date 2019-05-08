@@ -41,6 +41,11 @@ public class cover extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
         jButton4.setText("Data Baru");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
         jButton3.setText("Hapus Data");
@@ -52,11 +57,14 @@ public class cover extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
         jButton2.setText("Data Pengunjung");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Adobe Caslon Pro", 2, 24)); // NOI18N
         jLabel1.setText("Sistem Informasi Parkir");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Downloads\\kk.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,7 +111,21 @@ public class cover extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        hapusdata obj = new hapusdata();
+        obj.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        DataBaru obj = new DataBaru();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DataPengunjung obj = new DataPengunjung();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
