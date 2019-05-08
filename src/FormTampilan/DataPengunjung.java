@@ -19,7 +19,7 @@ public class DataPengunjung extends javax.swing.JFrame {
             String nama = vName.getText();
             String pass = new String(Vpass.getPassword());
             a.s = a.koneksi.createStatement();
-            String sql = "Select * from akun WHERE username = '"+nama+"' And Password = '"+pass+"'";
+            String sql = "Select * from akun WHERE username = '"+nama+"' And password = '"+pass+"'";
             a.r=a.s.executeQuery(sql);
         if (a.r.next()){
             if (Vpass.getText().equals(a.r.getString("password"))){
@@ -159,7 +159,8 @@ public class DataPengunjung extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(507, 393));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void VpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VpassActionPerformed
@@ -167,7 +168,8 @@ public class DataPengunjung extends javax.swing.JFrame {
     }//GEN-LAST:event_VpassActionPerformed
 
     private void vMencariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vMencariActionPerformed
-        masuk(); 
+        Caridatapengunjung obj = new Caridatapengunjung();
+        obj.setVisible(true);
     }//GEN-LAST:event_vMencariActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

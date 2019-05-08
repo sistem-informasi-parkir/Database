@@ -5,6 +5,13 @@
  */
 package FormTampilan;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author IYAL
@@ -18,6 +25,10 @@ public class DataBaru extends javax.swing.JFrame {
         initComponents();
     }
 
+    public Statement statement;
+    public ResultSet resultset;
+    public Connection connection;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,17 +39,17 @@ public class DataBaru extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        VTambah = new javax.swing.JButton();
+        VPlat = new javax.swing.JTextField();
+        VJenis = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        VKembali = new javax.swing.JButton();
+        VNama = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        VPass = new javax.swing.JPasswordField();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,18 +57,18 @@ public class DataBaru extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jButton2.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
-        jButton2.setText("Tambah");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        VTambah.setBackground(new java.awt.Color(102, 102, 102));
+        VTambah.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
+        VTambah.setText("Tambah");
+        VTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                VTambahActionPerformed(evt);
             }
         });
 
-        jTextField2.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
+        VPlat.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
+        VJenis.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,11 +82,16 @@ public class DataBaru extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Jenis Kendaraan");
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
-        jButton1.setText("Kembali");
+        VKembali.setBackground(new java.awt.Color(102, 102, 102));
+        VKembali.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
+        VKembali.setText("Kembali");
+        VKembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VKembaliActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
+        VNama.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +101,7 @@ public class DataBaru extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Data Baru");
 
-        jPasswordField1.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
+        VPass.setFont(new java.awt.Font("Sylfaen", 2, 11)); // NOI18N
 
         jButton3.setBackground(new java.awt.Color(102, 102, 102));
         jButton3.setFont(new java.awt.Font("Adobe Caslon Pro", 2, 14)); // NOI18N
@@ -104,9 +120,9 @@ public class DataBaru extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(VKembali)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(VTambah))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,10 +132,10 @@ public class DataBaru extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1))
+                            .addComponent(VNama, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(VPlat, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(VJenis, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                            .addComponent(VPass))
                         .addGap(64, 64, 64)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -138,27 +154,27 @@ public class DataBaru extends javax.swing.JFrame {
                     .addComponent(jButton3))
                 .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VPlat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(VPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(VTambah)
+                            .addComponent(VKembali))
                         .addGap(23, 23, 23))))
         );
 
@@ -177,12 +193,44 @@ public class DataBaru extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void VTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VTambahActionPerformed
+        String nama = VNama.getText();
+        String password = String.valueOf(VPass.getPassword());
+        String jeniskendaraan = VJenis.getText();
+        String PlatNomor = VPlat.getText();
+        
+        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/sistemparkir", "root","");
+            statement=connection.createStatement();
+            
+            /*a.setString(1, nama);
+            a.setString(2, password);
+            //a.setString(3, jeniskendaraan);
+            //a.setString(4, PlatNomor);
+            int i=a.executeUpdate();
+            if (i>0){
+                JOptionPane.showMessageDialog(null, "Data Tersimpan");
+            }else{
+                JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan");
+            }*/
+            
+            statement.executeUpdate("INSERT INTO akun (username,password) VALUES ('"+nama+"','"+password+"')");
+            statement.executeUpdate("INSERT INTO kendaraan (Jenis,PlatNomor) VALUES ('"+jeniskendaraan+"','"+PlatNomor+"')");
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_VTambahActionPerformed
+
+    private void VKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VKembaliActionPerformed
+        cover d = new cover();
+        d.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_VKembaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,13 +263,18 @@ public class DataBaru extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DataBaru().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField VJenis;
+    private javax.swing.JButton VKembali;
+    private javax.swing.JTextField VNama;
+    private javax.swing.JPasswordField VPass;
+    private javax.swing.JTextField VPlat;
+    private javax.swing.JButton VTambah;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -229,9 +282,5 @@ public class DataBaru extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
