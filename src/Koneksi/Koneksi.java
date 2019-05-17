@@ -7,28 +7,30 @@ package Koneksi;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import javax.swing.JOptionPane;
-import java.sql.*;
-
+import java.sql.SQLException;
 
 /**
  *
  * @author ASUS
  */
-public class Koneksi  {
-    public Statement s;
-    public ResultSet r;
-    public Connection koneksi;
-    
-    public void Class () {
+public class Koneksi {
+     
+    private static Connection MYSQLKoneksi;
+    public static Connection koneksiDB () throws SQLException {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            koneksi = DriverManager.getConnection("jdbc:mysql://localhost/sistemparkir", "root","");
-            System.out.println("Koneksi Sukses");
-        } catch (Exception e){
-            System.out.println ("Tidak Dapat Menyambung ke Database");
+            String url = "jdbc:mysql://localhost/sistemparkir";
+            String user = "root";
+            String pass = "";
+            
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            MYSQLKoneksi = DriverManager.getConnection(url, user, pass);
+        } catch (SQLException e){
+            System.out.println ("Koneksi ke Database gagal " + e.getMessage());
         }
+        
+        return MYSQLKoneksi;
      
     }
 }
+
 

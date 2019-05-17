@@ -5,6 +5,13 @@
  */
 package desain;
 
+import Koneksi.Koneksi;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author IYAL
@@ -29,9 +36,9 @@ public class tamudaftar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        VNama = new javax.swing.JTextField();
+        VDaftar = new javax.swing.JButton();
+        VPlat = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -47,28 +54,28 @@ public class tamudaftar extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel8.setText("Plat Kendaraan");
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        VNama.setBackground(new java.awt.Color(204, 204, 204));
+        VNama.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        VNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                VNamaActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Sylfaen", 2, 14)); // NOI18N
-        jButton2.setText("Daftar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        VDaftar.setBackground(new java.awt.Color(153, 153, 153));
+        VDaftar.setFont(new java.awt.Font("Sylfaen", 2, 14)); // NOI18N
+        VDaftar.setText("Daftar");
+        VDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                VDaftarActionPerformed(evt);
             }
         });
 
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        VPlat.setBackground(new java.awt.Color(204, 204, 204));
+        VPlat.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        VPlat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                VPlatActionPerformed(evt);
             }
         });
 
@@ -117,11 +124,11 @@ public class tamudaftar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYAL\\Pictures\\png moto1 copy.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/png moto1 copy.png"))); // NOI18N
 
-        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYAL\\Pictures\\kelapa.png")); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/kelapa.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYAL\\Pictures\\itera copy.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/itera copy.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,7 +141,7 @@ public class tamudaftar extends javax.swing.JFrame {
                 .addGap(142, 142, 142)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(VDaftar)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -146,8 +153,8 @@ public class tamudaftar extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(120, 120, 120)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(jTextField5))
+                    .addComponent(VNama, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(VPlat))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,7 +168,7 @@ public class tamudaftar extends javax.swing.JFrame {
                         .addGap(85, 142, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(VDaftar)
                                 .addGap(24, 24, 24))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,11 +178,11 @@ public class tamudaftar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(VNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(VPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -193,20 +200,43 @@ public class tamudaftar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void VNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_VNamaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void VDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VDaftarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        String nama = VNama.getText();
+        String PlatNomor = VPlat.getText();
+        
+        
+        try{
+            java.sql.Connection kon = (Connection) Koneksi.koneksiDB();
+            Statement statement= kon.createStatement();
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+            String asdd = "INSERT INTO tamu VALUES ('"+nama+"','"+PlatNomor+"')";
+            
+            statement.executeUpdate(asdd);
+            
+            
+            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+        } catch (HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+    }                        
+        tampilanlogintamu obj = new tampilanlogintamu();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_VDaftarActionPerformed
+
+    private void VPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VPlatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_VPlatActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        tamu obj = new tamu();
+        obj.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton4PropertyChange
@@ -249,7 +279,9 @@ public class tamudaftar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton VDaftar;
+    private javax.swing.JTextField VNama;
+    private javax.swing.JTextField VPlat;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
@@ -259,7 +291,5 @@ public class tamudaftar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
